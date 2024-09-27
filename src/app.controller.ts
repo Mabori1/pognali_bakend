@@ -22,7 +22,7 @@ export class AppController {
   }
 
   @ApiResponse({
-    type: TravelDto,
+    type: CardRdo,
     status: HttpStatus.OK,
     description: 'Создание карточки путешествия',
   })

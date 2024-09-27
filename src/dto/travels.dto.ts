@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsBoolean, IsEnum, IsNumber, IsString, Min } from 'class-validator';
+import { IsArray, IsBoolean, IsIn, IsNumber, IsString, Min } from 'class-validator';
 import { TransportType } from 'src/types';
 
 class TravelDates {
@@ -85,8 +85,8 @@ export class TravelDto {
     enum: TransportType,
     required: true,
   })
-  @IsEnum(TransportType)
-  public transportType: TransportType[];
+  @IsIn(['plane', 'bus', 'bicycle', 'run'], { each: true })
+  public transportType: string[];
 
   @ApiProperty({
     description: 'Массив с данными выбранных стран',
