@@ -24,17 +24,6 @@ export class AppController {
   @ApiResponse({
     type: CardRdo,
     status: HttpStatus.OK,
-    description: 'Создание карточки путешествия',
-  })
-  @Post('travels')
-  public async createTravel(@Body() dto: TravelDto) {
-    const newTravels = await this.appService.createTravel(dto);
-    return newTravels;
-  }
-
-  @ApiResponse({
-    type: CardRdo,
-    status: HttpStatus.OK,
     description: 'Получить рандомные карточки',
   })
   @Get('travels')
