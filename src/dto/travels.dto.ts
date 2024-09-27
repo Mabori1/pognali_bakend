@@ -90,7 +90,20 @@ export class TravelDto {
 
   @ApiProperty({
     description: 'Массив с данными выбранных стран',
-    example: 'флаг, описание, название',
+    example: [
+      {
+        flags: 'https://flagcdn.com/w320/lu.png',
+        alt: 'Флаг Люксембурга состоит из трех равных горизонтальных полос красного, белого и светло-синего цветов.',
+        name: 'Люксембург',
+        region: 'Европа',
+      },
+      {
+        flags: 'https://flagcdn.com/w320/iq.png',
+        alt: 'Флаг Ирака состоит из трех равных горизонтальных полос красного, белого и черного цветов. В центральной белой полосе расположены арабские надписи зеленого цвета.',
+        name: 'Ирак',
+        region: 'Азия',
+      },
+    ],
     required: true,
   })
   public selectedCountries: CountryData[];
@@ -106,7 +119,7 @@ export class TravelDto {
   @ApiProperty({
     description: 'Даты путешествия',
     example:
-      '{startDate: "Fri Sep 27 2024 00:00:00 GMT+0300", endDate: Fri Sep 29 2024 00:00:00 GMT+0300}',
+      '{startDate: "Fri Sep 27 2024 00:00:00 GMT+0300", endDate: "Fri Sep 29 2024 00:00:00 GMT+0300"}',
     required: true,
   })
   public travelDates: TravelDates;
