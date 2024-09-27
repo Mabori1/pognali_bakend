@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import { TravelDto } from './dto/travels.dto';
 import { faker } from '@faker-js/faker/locale/ru';
-import { Card } from 'types';
+import { Card } from 'src/types';
 import { randomUUID } from 'crypto';
 import { countriesData, tagsArray } from './data';
 

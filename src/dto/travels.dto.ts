@@ -1,6 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsBoolean, IsEnum, IsNumber, IsString, Min } from 'class-validator';
-import { TransportType } from 'types';
+import { TransportType } from 'src/types';
+
+class TravelDates {
+  @ApiProperty({
+    description: 'Дата начала путешествия',
+    example: 'Fri Sep 27 2024 00:00:00 GMT+0300',
+    required: true,
+  })
+  @IsString()
+  public startDate: string;
+
+  @ApiProperty({
+    description: 'Дата окончания путешествия',
+    example: 'Fri Sep 29 2024 00:00:00 GMT+0300',
+    required: true,
+  })
+  @IsString()
+  public endDate: string;
+}
 
 export class TravelDto {
   @ApiProperty({
@@ -87,7 +105,8 @@ export class TravelDto {
 
   @ApiProperty({
     description: 'Даты путешествия',
-    example: 'начало, окончание',
+    example:
+      '{startDate: "Fri Sep 27 2024 00:00:00 GMT+0300", endDate: Fri Sep 29 2024 00:00:00 GMT+0300}',
     required: true,
   })
   public travelDates: TravelDates;
@@ -135,22 +154,4 @@ class CountryData {
   })
   @IsString()
   public region: string;
-}
-
-class TravelDates {
-  @ApiProperty({
-    description: 'Дата начала путешествия',
-    example: 'Fri Sep 27 2024 00:00:00 GMT+0300',
-    required: true,
-  })
-  @IsString()
-  public startDate: string;
-
-  @ApiProperty({
-    description: 'Дата окончания путешествия',
-    example: 'Fri Sep 29 2024 00:00:00 GMT+0300',
-    required: true,
-  })
-  @IsString()
-  public endDate: string;
 }

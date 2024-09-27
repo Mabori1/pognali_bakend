@@ -20,7 +20,6 @@ async function bootstrap() {
   app.enableCors({
     origin: ['http://localhost:3000', 'https://htmlonelove.github.io'], // Разрешаем запросы с этого источника
     methods: 'GET,PUT,PATCH,POST,DELETE',
-    credentials: true, // если нужен доступ с использованием cookies
   });
 
   const document = SwaggerModule.createDocument(app, config);
