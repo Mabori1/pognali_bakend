@@ -7,29 +7,35 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model Apartment {
-  id            Int    @id @default(autoincrement())
-  name          String
-  typeBuilding  String
-  type          String
-  floor         String
-  kitchenSquare Int
-  bedroomSquare Int
-  totalSquare   Int
-  address       String
-  pricePerMeter Int
-  priceTotal    Int
+model Card {
+  uuid      String @id @default(uuid())
+  firstName String
+  lastName  String
+  photoUrl  String
+  tags      Tags[]
+  countries Countries[]
+  transport Transport[]
+  likes Int
+  level Int
 }
 
-model House {
-  id             Int    @id @default(autoincrement())
-  name           String
-  typeBuilding   String
-  type           String
-  kitchenSquare  Int
-  squareBuilding Int
-  totalSquare    Int
-  address        String
-  pricePerMeter  Int
-  priceTotal     Int
+model Tags {
+  uuid   String @id @default(uuid())
+  card   Card   @relation(fields: [cardId], references: [uuid])
+  cardId String
+  name   String
+}
+
+model Countries {
+  uuid   String @id @default(uuid())
+  card   Card   @relation(fields: [cardId], references: [uuid])
+  cardId String
+  name   String
+}
+
+model Transport {
+  uuid   String @id @default(uuid())
+  card   Card   @relation(fields: [cardId], references: [uuid])
+  cardId String
+  name   String
 }

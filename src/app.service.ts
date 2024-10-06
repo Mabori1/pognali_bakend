@@ -5,6 +5,7 @@ import { faker } from '@faker-js/faker/locale/ru';
 import { Card } from 'src/types';
 import { randomUUID } from 'crypto';
 import { countriesData, tagsArray } from './data';
+import { PaginationDTO } from './dto/pagination.dto';
 
 @Injectable()
 export class AppService {
@@ -42,14 +43,20 @@ export class AppService {
 
     tempArr.push(currentCard);
 
-    for (let i = 0; i < 100; i++) {
-      const sex: 'male' | 'female' = faker.helpers.arrayElement(['male', 'female']);
+    for (let i = 0; i < 19; i++) {
+      const sex: 'male' | 'female' = faker.helpers.arrayElement([
+        'male',
+        'female',
+      ]);
+
+      const male = `https://xsgames.co/randomusers/assets/avatars/male/${faker.number.int({ min: 1, max: 70 })}.jpg`;
+      const female = `https://xsgames.co/randomusers/assets/avatars/female/${faker.number.int({ min: 1, max: 70 })}.jpg`;
 
       const tempCard = {
         uuid: randomUUID(),
         firstName: faker.person.firstName(sex),
         lastName: faker.person.lastName(sex),
-        photoUrl: `https://xsgames.co/randomusers/avatar.php?g=${sex}`,
+        photoUrl: `${sex === 'male' ? male : female}`,
         tags: faker.helpers.arrayElements(tagsArray, { min: 3, max: 8 }),
         countries: selectedCountries,
         transport: transportType,
@@ -63,23 +70,36 @@ export class AppService {
     return tempArr;
   }
 
-  async getTravels() {
+  async getTravels(paginationDTO: PaginationDTO) {
     const tempArr: Card[] = [];
+    console.log(paginationDTO);
 
-    for (let i = 0; i < 300; i++) {
-      const sex: 'male' | 'female' = faker.helpers.arrayElement(['male', 'female']);
+    for (let i = 0; i < 20; i++) {
+      const sex: 'male' | 'female' = faker.helpers.arrayElement([
+        'male',
+        'female',
+      ]);
+
+      const male = `https://xsgames.co/randomusers/assets/avatars/male/${faker.number.int({ min: 1, max: 70 })}.jpg`;
+      const female = `https://xsgames.co/randomusers/assets/avatars/female/${faker.number.int({ min: 1, max: 70 })}.jpg`;
 
       const tempCard = {
         uuid: randomUUID(),
         firstName: faker.person.firstName(sex),
         lastName: faker.person.lastName(sex),
-        photoUrl: `https://xsgames.co/randomusers/avatar.php?g=${sex}`,
+        photoUrl: `${sex === 'male' ? male : female}`,
         tags: faker.helpers.arrayElements(tagsArray, { min: 3, max: 8 }),
-        countries: faker.helpers.arrayElements(countriesData, { min: 1, max: 4 }),
-        transport: faker.helpers.arrayElements(['plane', 'bus', 'bicycle', 'run'], {
+        countries: faker.helpers.arrayElements(countriesData, {
           min: 1,
           max: 4,
         }),
+        transport: faker.helpers.arrayElements(
+          ['plane', 'bus', 'bicycle', 'run'],
+          {
+            min: 1,
+            max: 4,
+          },
+        ),
         likes: faker.number.int({ min: 10, max: 10000 }),
         level: faker.number.int({ min: 3, max: 80 }),
       };

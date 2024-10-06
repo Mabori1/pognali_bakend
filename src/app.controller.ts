@@ -1,8 +1,17 @@
-import { Body, Controller, Get, HttpStatus, Logger, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Logger,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { ApiResponse } from '@nestjs/swagger';
 import { TravelDto } from './dto/travels.dto';
 import { CardRdo } from './rdo/card.rdo';
+import { PaginationDTO } from './dto/pagination.dto';
 
 @Controller()
 export class AppController {
@@ -27,8 +36,8 @@ export class AppController {
     description: 'Получить рандомные карточки',
   })
   @Get('travels')
-  async getTravels() {
-    const travels = await this.appService.getTravels();
+  async getTravels(@Query() paginationDTO: PaginationDTO) {
+    const travels = await this.appService.getTravels(paginationDTO);
 
     return travels;
   }

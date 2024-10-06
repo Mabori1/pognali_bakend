@@ -1,5 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ArrayNotEmpty, IsArray, IsBoolean, IsIn, IsNumber, IsString, Min } from 'class-validator';
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsBoolean,
+  IsIn,
+  IsNumber,
+  IsString,
+  Min,
+} from 'class-validator';
 import { TransportType } from 'src/types';
 
 class TravelDates {
