@@ -13,7 +13,7 @@ import { TravelDto } from './dto/travels.dto';
 import { CardRdo } from './rdo/card.rdo';
 import { PaginationDTO } from './dto/pagination.dto';
 
-@Controller()
+@Controller('travels')
 export class AppController {
   private readonly logger = new Logger(AppController.name);
 
@@ -24,7 +24,7 @@ export class AppController {
     status: HttpStatus.OK,
     description: 'Создание карточки путешествия',
   })
-  @Post('travels')
+  @Post('/')
   public async CreateTravel(@Body() dto: TravelDto) {
     const newTravels = await this.appService.createTravel(dto);
     return newTravels;
@@ -35,9 +35,9 @@ export class AppController {
     status: HttpStatus.OK,
     description: 'Получить рандомные карточки',
   })
-  @Get('travels')
-  async getTravels(@Query() paginationDTO: PaginationDTO) {
-    const travels = await this.appService.getTravels(paginationDTO);
+  @Get('/')
+  async getTravels(@Query() query: PaginationDTO) {
+    const travels = await this.appService.getTravels(query);
 
     return travels;
   }

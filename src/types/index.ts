@@ -5,6 +5,15 @@ export enum TransportType {
   RUN = 'run',
 }
 
+export enum RegionType {
+  Europa = 'Европа',
+  Asia = 'Азия',
+  Island = 'Острова',
+  Africa = 'Африка',
+  America = 'Америка',
+  All = 'All',
+}
+
 export type CountryData = {
   flags: string;
   alt: string;
